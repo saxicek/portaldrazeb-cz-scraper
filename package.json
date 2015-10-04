@@ -1,0 +1,22 @@
+{
+  "name": "portaldrazeb-cz-scraper",
+  "version": "1.0.0",
+  "description": "Scraper for www.portaldrazeb.cz",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/saxicek/portaldrazeb-cz-scraper.git"
+  },
+  "author": "saxicek",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/saxicek/portaldrazeb-cz-scraper/issues"
+  },
+  "homepage": "https://github.com/saxicek/portaldrazeb-cz-scraper",
+  "dependencies": {
+    "request-promise": "^0.4.3"
+  }
+}

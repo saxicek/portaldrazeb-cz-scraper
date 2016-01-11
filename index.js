@@ -2,13 +2,8 @@
 
 'use strict';
 
-var
-    crawler = require('./lib/crawler.js')('http://www.portaldrazeb.cz'),
-    db = require('./lib/database/nedb.js');
+require('dotenv-safe').load();
 
-db.invalidateAuctions()
-    .then(crawler.getAuctionUrls)
-    .then(db.saveAuctionUrls)
-    .then(db.getValidAuctions)
-    .then(crawler.crawlAuctions)
-    .then(db.updateAuctions);
+var cloudant = require('./lib/cloudant');
+
+cloudant.addNewAuctionUrls();

@@ -6,4 +6,15 @@ require('dotenv-safe').load();
 
 var cloudant = require('./lib/cloudant');
 
-cloudant.addNewAuctionUrls();
+exports.handler = function(event, context) {
+    switch (event.action) {
+        case 'fetchAndParse':
+            cloudant.fetchAndParse();
+            break;
+        case 'addNewAuctionUrls':
+            cloudant.addNewAuctionUrls();
+            break;
+        default:
+            console.log('Unsupported action ' + event.action);
+    }
+};

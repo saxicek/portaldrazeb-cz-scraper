@@ -71,13 +71,18 @@ describe('parser', function() {
     });
 
     describe('parseAuction()', function() {
-        var body;
+        var body,
+            body2;
 
         before(function(done) {
             fs.readFile('test/data/portaldrazeb.cz-detail.html', 'utf8', function (err, data) {
                 if (err) return console.log(err);
                 body = data;
-                done();
+                fs.readFile('test/data/portaldrazeb.cz-detail-02.html', 'utf8', function (err, data) {
+                    if (err) return console.log(err);
+                    body2 = data;
+                    done();
+                });
             });
         });
 
@@ -109,6 +114,11 @@ describe('parser', function() {
                 unknown: [],
                 unmapped: []
             });
+        });
+        it('should not fail on unmapped fields', function() {
+            var result = parser.parseAuction(body2);
+            expect(result).to.include.key('unmapped');
+            expect(result.unmapped).to.deep.equal(['Katastr: Budkov']);
         });
     });
 

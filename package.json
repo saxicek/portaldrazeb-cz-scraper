@@ -23,13 +23,20 @@
     "dotenv-safe": "^2.1.1",
     "lodash": "^3.10.1",
     "moment-timezone": "^0.4.0",
-    "nedb": "^1.2.1",
     "request-promise": "^0.4.3",
     "underscore.string": "^3.2.2"
   },
   "devDependencies": {
     "chai": "^3.3.0",
     "chai-as-promised": "^5.1.0",
+    "del": "^2.2.0",
+    "gulp": "^3.9.0",
+    "gulp-awspublish": "^3.0.1",
+    "gulp-copy": "0.0.2",
+    "gulp-install": "^0.6.0",
+    "gulp-sequence": "^0.4.4",
+    "gulp-shell": "^0.5.1",
+    "gulp-zip": "^3.0.2",
     "mocha": "^2.3.3"
   }
 }

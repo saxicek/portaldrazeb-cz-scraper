@@ -6,5 +6,5 @@ require('dotenv-safe').load();
 
 var cloudant = require('./lib/cloudant');
 
-cloudant.addNewAuctionUrls()
-    .then(cloudant.fetchAndParse);
+cloudant.updateCrawlingDesign()
+    .then(cloudant.updateAuctionDesign);

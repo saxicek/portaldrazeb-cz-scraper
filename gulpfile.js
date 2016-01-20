@@ -9,13 +9,12 @@ var gulp = require('gulp'),
     copy = require('gulp-copy'),
     del = require('del'),
     awspublish = require('gulp-awspublish'),
-    shell = require('gulp-shell'),
     gulpSequence = require('gulp-sequence'),
 
     BUILD_DIR = 'build',
     DIST_DIR = 'dist';
 
-gulp.task('default', gulpSequence('clean', 'copyToBuild', 'installDeps', 'pruneCloudant', 'zip', 'publish'));
+gulp.task('default', gulpSequence('clean', 'copyToBuild', 'installDeps', 'zip', 'publish'));
 
 gulp.task('publish', function() {
     // load credentials for Bucket
@@ -82,7 +81,3 @@ gulp.task('clean', function () {
         BUILD_DIR
     ]);
 });
-
-// Cloudant 1.4.0 includes dev dependencies which makes package way too big.
-// This will remove them.
-gulp.task('pruneCloudant', shell.task('npm prune', { cwd: BUILD_DIR + '/node_modules/cloudant' }));

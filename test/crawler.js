@@ -55,29 +55,27 @@ describe('crawler', function() {
         }, 20);
     });
 
-    describe('crawlAuctions()', function() {
+    describe('crawlAuction()', function() {
 
         it('should expose a function', function() {
-            expect(crawler.crawlAuctions).to.be.a('function');
+            expect(crawler.crawlAuction).to.be.a('function');
         });
 
-        it('should crawl all auctions', function(done) {
-            var auctions = [
-                { url: 'http://127.0.0.1:4000/091EX00397/11-084/podil-id-1-6-rodinneho-domu-s-pozemkem-v-obci-kounov-okres-rychnov-nad-kneznou?backsearch=1' },
-                { url: 'http://127.0.0.1:4000/091EX07411/13-081/drazba-nemovite-veci-pozemky-v-obci-bilovec?backsearch=1' },
-                { url: 'http://127.0.0.1:4000/085EX06444/11-345/rodinny-dum-mrakotin-u-skutce?backsearch=1' }
-            ];
+        it('should crawl auction', function(done) {
+            var auction = {
+                doc: {
+                    url: 'http://127.0.0.1:4000/091EX00397/11-084/podil-id-1-6-rodinneho-domu-s-pozemkem-v-obci-kounov-okres-rychnov-nad-kneznou?backsearch=1'
+                }
+            };
             crawler
-                .crawlAuctions(auctions)
+                .crawlAuction(auction)
                 .then(
                     function (result) {
-                        expect(result).to.have.length(3);
-                        expect(result[0]).to.be.an('object');
-                        expect(result[0]).to.contain.all.keys(['url', 'identifier']);
-                        expect(result[1]).to.be.an('object');
-                        expect(result[1]).to.contain.all.keys(['url', 'identifier']);
-                        expect(result[2]).to.be.an('object');
-                        expect(result[2]).to.contain.all.keys(['url', 'identifier']);
+                        expect(result).to.be.an('object');
+                        expect(result).to.contain.all.keys(['url', 'raw_data', 'fetched', 'data', 'parsed']);
+                        expect(result.fetched).to.equal(true);
+                        expect(result.parsed).to.equal(true);
+                        expect(result.data).to.contain.all.keys(['identifier']);
                         done();
                     },
                     function (err) {

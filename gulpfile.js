@@ -5,7 +5,7 @@
 
 var gulp = require('gulp'),
     zip = require('gulp-zip'),
-    install = require('gulp-install'),
+    yarn = require('gulp-yarn'),
     copy = require('gulp-copy'),
     del = require('del'),
     awspublish = require('gulp-awspublish'),
@@ -55,8 +55,8 @@ gulp.task('zip', function () {
 });
 
 gulp.task('installDeps', function () {
-    return gulp.src(['./package.json'], { cwd: BUILD_DIR })
-        .pipe(install({ production: true }));
+    return gulp.src(['./package.json', './yarn.lock'], { cwd: BUILD_DIR })
+        .pipe(yarn({ production: true }));
 });
 
 gulp.task('copyToBuild', function () {
@@ -68,6 +68,7 @@ gulp.task('copyToBuild', function () {
         'lambdaupdateurls.js',
         'LICENSE',
         'package.json',
+        'yarn.lock',
         'README.md'
     ];
 
